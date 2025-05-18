@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RỄSTAURACE</title>
+    <meta name="google-site-verification" content="rMi8op9TphTCGo5lz8GXZPdCImFsy3p2P_j4yBzmCPQ" />
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Rễ means roots.
+We are a family business, our environment is friendly and at the same time mystical. The journey to the roots deepened as we, in creating the story of Rễ, reminisced about our homeland. We have planted roots in the Czech Republic, each stage of our journey has its significant place. We feel gratitude for our foundations, diverse local cuisine and we love to pass on this knowledge.">
+    <link rel="icon" type="image/x-icon" href="../restaurace/image/01_Homepage/Rễ_Logo-homepage_large.png">
+    <link href="../restaurace/vendor/bootstrap.min.css" rel="stylesheet">
+    <script src="../restaurace/vendor/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../restaurace/vendor/font-awesome.css">
+    <link rel="stylesheet" href="../restaurace/css/style1.css?v=3.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="../restaurace/js/mail.js?v=1.4"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+    <script src="../restaurace/js/language.js?v=4.0"></script>
+    <script src="../restaurace/js/page.js?v=2.6.13"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-top d-flex align-items-center justify-content-between px-2 fixed-top"  id="header">
+            <nav class="navbar navbar-expand-md navbar-dark py-0 w-100">
+              <div class="row w-100">
+                <div class="d-block d-md-none h-100 col-3">
+                      <button class="navbar-toggler d-flex align-items-center" type="button" id="button-menu" data-bs-toggle="collapse"
+                          data-bs-target="#collapsibleNavbar">
+                          <h6 class="mb-0" id="close-menu"><i class="fa fa-times" style="font-size: 18px;" aria-hidden="true"></i></h6>
+                          <h6 class="mb-0" id="open-menu"><i class="fa fa-bars" style="font-size: 18px" aria-hidden="true"></i></h6>
+                      </button>
+                  </div>
+                  <div class="logo d-flex align-items-center col-6 col-md-1">
+                      <a href="#home">
+                          <h3 class="ms-sm-5 mb-0 col-5 col-md-10">
+                              <img src="../restaurace/image/01_Homepage/logo (2).png" alt="" class="img-fluid">
+                          </h3>
+                      </a>
+                  </div>
+                  <div class="d-flex d-md-none h-100 col-3 justify-content-end">
+                        <li class="d-flex align-items-center">
+                            <h5 class="pe-1 mb-0 language Cz" onclick="language(this)">Cz</h5>
+                            <span class="px-1 text-white">/</span>
+                            <h5 class="ps-0 mb-0 language En" onclick="language(this)">En</h5>
+                        </li>
+                    </div>
+                <div class="menu collapse navbar-collapse justify-content-end col-sm-11 pb-4 pb-md-0" id="collapsibleNavbar">
+                    <ul class="nav navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about-us" id="menu-about">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#menu" id="menu-specialties">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#booking" id="menu-booking">Booking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery" id="menu-gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" id="menu-contact">Contact</a>
+                        </li>
+                        <li class="nav-item d-flex ps-3 py-3 py-lg-0">
+                            <a class="nav-link icon me-3 p-0" href="https://www.facebook.com/rerestaurantbrno" target="_black">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a class="nav-link icon p-0" href="https://www.instagram.com/re.brno/" target="_black">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-md-flex align-items-center">
+                            <h5 class="nav-link pe-1 mb-0 language Cz" onclick="language(this)">Cz</h5>
+                            <h5 class="nav-link ps-0 mb-0 language En" onclick="language(this)">En</h5>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+                <div class="close d-md-none d-none" id="close"></div>
+            </nav>
+
+        </div>
+    </div>
+    <section class="content">
+        <div class="banner flex-column section" id="home" name="menu-home">
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+            <div class="carousel-inner" id="list-home" style="max-height: 100vh">
+              
+            </div>
+          </div>
+            <div class="row justify-content-center" id="content-img">
+                <div class="text-center col-6 col-sm-6 col-lg-6">
+                    <img src="../restaurace/image/01_Homepage/Rễ_Logo-homepage_white.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="about section py-md-5 px-3 d-flex align-items-center" id="about-us" name="menu-about">
+            <div class="container-fluid py-5">
+                <div class="row justify-content-center mx-0">
+                    <div class="col-12 col-md-6 justify-content-center align-items-center d-flex">
+                          <img src="../restaurace/image/02_About us/Circle_About.png" alt="" class="img-fluid col-10 col-md-11">
+                      </div>
+                      <div class="col-12 col-md-6 d-md-flex flex-column justify-content-center">
+                          <h1 class="title pb-4">
+                              <img src="../restaurace/image//02_About us/RễdiscoverFarEast.png" alt="" class="img-fluid">
+                          </h1>
+                          <p class="content">
+                            Rễ means roots.
+                        </p>
+                        <p class="content">
+                            We are a family business, our environment is friendly and at the same time mystical. The
+                            journey to the roots deepened as we, in creating the story of Rễ, reminisced about our
+                            homeland. We have planted roots in the Czech Republic, each stage of our journey has its
+                            significant place. We feel gratitude for our foundations, diverse local cuisine and we love
+                            to pass on this knowledge.
+                        </p>
+                        <p class="content">
+                            We present Vietnamese, Japanese, and Korean cuisine in our own way and through the
+                            interconnection of cultures. We also offer a selection of vegetarian and vegan dishes.
+                        </p>
+                        <p class="content">
+                            We drew inspiration from ports where cultures intertwine, and Faifo (formerly known as Hội
+                            An) particularly resonated with us. The cultural fusion in this region represents a unique
+                            blend of countries from the Far East.
+                        </p>
+                        <p class="content">
+                            The interior was designed by the studio Hrdina & Pavlík, who captured our thought flow
+                            excellently and transformed it into its final form.
+                        </p>
+                        <p class="content">
+                            Mindfulness and mindful dining
+                            Is it possible to walk slowly in a fast-paced world? Allow yourself to rest, let intuition
+                            guide you in the unfamiliar landscape of cuisine where you will sit today and what dish you
+                            will choose. You will have space to savor the present moment and once again enjoy the joy of
+                            the little things.
+                        </p>
+                        <p class="content">
+                            🌿 Stop in time with Rễ
+                        </p>
+                        <p class="content">
+                            Rễ is located in the heart of Brno at Běhounská 8.
+                        </p>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center flex-column section" id="menu" name="menu-specialties">
+            <div class="row mb-3 w-100">
+                <div class="d-flex mb-3 align-items-center justify-content-center">
+                    <div class="col-11 row align-content-center">
+                        <div class="title flex-start">
+                            <h1 class="fw-bolder">Menu</h1>
+                        </div>
+                        <div class="open-menu col-3 d-flex align-items-center justify-content-center">
+                            <a target="_black" id="menuCZ" href="">
+                                <h1>CZ</h1>
+                            </a>
+                        </div>
+                        <div class="col-6 mb-4 text-center">
+                            <div class="poster">
+                                <img src="../restaurace/image/03_Menu/Roots_Circle_purple.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="open-menu col-3 d-flex align-items-center justify-content-center">
+                            <a target="_black" id="menuEN" href="">
+                                <h1>EN</h1>
+                            </a>
+                        </div>
+                        <div class="title d-flex justify-content-end py-0">
+                            <a target="_black" href="https://food.bolt.eu/en-US/456-brno/p/79401-rễ-restaurant-brno">
+                                <img src="../restaurace/image/03_Menu/Logo_Bolt_1.png" alt="" class="img-fluid">
+                            </a>
+                            <a target="_black" href="https://www.foodora.cz/restaurant/iocx/re-restaurant" class="mx-3">
+                                <img src="../restaurace/image/03_Menu/Logo_Foodora_1.png" alt="" class="img-fluid">
+                            </a>
+                            <a target="_black" href="https://wolt.com/cs/cze/brno/restaurant/re-brno">
+                                <img src="../restaurace/image/03_Menu/Logo_Wolt_1.png" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="booking section" id="booking" name="menu-booking">
+            <div class="container">
+                <div class="title pb-4">
+                    <h1 class="fw-bolder">Booking</h1>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6">
+                        <form enctype="multipart/form-data">
+                            <div class="input">
+                                <label for="name">Name Surname</label>
+                                <div class="div-input input-name d-flex flex-column">
+                                  <input type="text" name="name" id="name" placeholder="Fill in your name">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="telephone">Phone Number</label>
+                                <div class="div-input input-phone d-flex flex-column">
+                                     <input type="tel" name="telephone" id="phone" placeholder="Phone number">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="email">Email</label>
+                                <div class="div-input input-email d-flex flex-column">
+                                  <input type="email" name="email" id="email" placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="persons">Number of persons</label>
+                                <div class="div-input input-persons d-flex flex-column">
+                                  <input type="number" id="persons" name="persons" min="1" max="10"
+                                         
+                                       placeholder="Number of persons" value="2">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="date">Date and time</label>
+                                <div class="div-input input-date d-flex flex-column">
+                                  <input type="date" name="date" id="date" style="background: transparent;" placeholder="YYYY-MM-DD">
+                              </div>
+                            </div>
+                            <div class="input">
+                                <label for="estimatedTime">Estimated time of visit</label>
+                                <div class="div-input input-estimatedTime d-flex flex-column">
+                                  <input type="text" name="estimatedTime" id="estimatedTime" placeholder="(1h, 2h)">
+                              </div>
+                            </div>
+                            <div class="input">
+                                <label for="note">Note (special requests, ...)</label>
+                                <div class="div-input input-note d-flex flex-column">
+                                  <input type="text" name="note" id="note" placeholder="Note">
+                              </div>
+                            </div>
+                            <div class="send text-end" id="box-sendBooking">
+                              <button type="submit" id="send-booking">Send</button>
+                                <span class="loading offset-9 col-3 text-end d-none">
+                                    <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 30" enable-background="new 0 0 0 0" xml:space="preserve">
+                                        <circle fill="#BE4B1D" stroke="none" cx="6" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.1"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="30" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.2"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="54" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.3"></animateTransform>
+                                        </circle>
+                                      </svg>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-6 justify-content-center d-flex">
+                        <div class="thumnail col-9">
+                            <img src="../restaurace/image/04_Booking/Circle_Booking.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="mt-5 col-12">
+                        <h6>Reserve by phone:</h6>
+                        <a class="fw-bolder phone" href="tel:+420724332258" style="font-size: calc(1.375rem + 1.5vw); color: #BE4B1D">+420 724 332 258</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="gallery section" id="gallery" name="menu-gallery">
+            <!-- Top content -->
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner" id="list-gallery">
+                </div>
+                <button class="carousel-control-prev align-items-end mb-5" type="button"
+                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true">
+                    </span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next align-items-end mb-5" type="button"
+                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="feedback section" id="feedback" name="feedback">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="px-sm-5 px-2 mt-5" id="comment">
+                            <din class="container">
+                                <div class="icon pb-5">
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                </div>
+                                <din class="content" id="comment-review">
+                                    
+                                </din>
+                            </din>
+                            <div class="quote pb-2 pt-5">
+                                <h5>Instagram</h5>
+                            </div>
+                        </div>
+                        <div class="list-img">
+                            <div class="row">
+                                <div class="img-review col-6 col-sm-3 px-0">
+                                    <img src="" alt="" class="img-fluid">
+                                </div>
+                                <div class="img-review col-6 col-sm-3 px-0">
+                                    <img src="../restaurace/image/feedback/Re_Insta_01.jpg" id="template" alt="" class="img-fluid">
+                                </div>
+                                <div class="img-review col-6 col-sm-3 px-0 d-none d-sm-block">
+                                    <img src="" alt="" class="img-fluid">
+                                </div>
+                                <div class="img-review col-6 col-sm-3 px-0 d-none d-sm-block">
+                                    <img src="" alt="" class="img-fluid">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 px-sm-5 px-2">
+                      <form>
+                        <div class="input-content mt-5">
+                            <div class="title pt-md-5">
+                                <h1 class="text-black pb-5 fw-bolder">Feedback</h1>
+                            </div>
+                            <div class="input d-flex justify-content-between">
+                                <label for="name" class="mb-1">Rating </label>
+                                <div class="input-rating">
+                                  <div class="feedback-rating w-100" id="rating">
+                                    <input type="radio" name="rating" class="choose-rating" id="star1" value="star5">
+                                    <label for="star1"></label>
+                                    <input type="radio" name="rating" class="choose-rating" id="star2" value="star4">
+                                    <label for="star2"></label>
+                                    <input type="radio" name="rating" class="choose-rating" id="star3" value="star3">
+                                    <label for="star3"></label>
+                                    <input type="radio" name="rating" class="choose-rating" id="star4" value="star2">
+                                    <label for="star4"></label>
+                                    <input type="radio" name="rating" class="choose-rating" id="star5" value="star1">
+                                    <label for="star5"></label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="input d-flex justify-content-between name">
+                                <label for="name" class="mb-1">Your Name </label>
+                                <div class="input-name d-flex flex-column">
+                                  <input type="text" placeholder="Fill in your name" class="w-100" id="feedback-name">
+                                </div>
+                            </div>
+                            <div class="input d-flex justify-content-between feedback">
+                                <label for="name" class="mb-1">Feedback</label>
+                                <div class="text-feedback py-0">
+                                    <textarea rows="8" placeholder="Write feedback" name="feedback" id="text-feedback"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-send d-flex justify-content-end mb-4">
+                            <div class="send text-end send-feedback">
+                                <button type="submit" id="send-feedback">Send</button>
+                                <span class="loading offset-9 col-3 text-end d-none">
+                                    <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 30" enable-background="new 0 0 0 0" xml:space="preserve">
+                                        <circle fill="#BE4B1D" stroke="none" cx="6" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.1"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="30" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.2"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="54" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.3"></animateTransform>
+                                        </circle>
+                                      </svg>
+                                  </span>
+                            </div>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer id="contact" class="section contact py-5 px-4" name="menu-contact">
+        <div class="row pt-4">
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="col-sm-8 col-12">
+                    <img src="../restaurace/image/06_Contact/Circle_Contact.png" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="info py-5">
+                    <h4>Rễ</h4>
+                    <h5>Běhounská 8<br>602 00 Brno</h5>
+                    <h5>+420 724 332 258<br>
+                        <a target="_black"  href="mailto:re.brno@seznam.cz" style="text-decoration: underline">re.brno@seznam.cz</a></h5>
+                    <h5 class="mt-4">Opening hours</h5>
+                    <h5 class="mb-4">Mon – Sun 10.30 - 22.00</h5>
+                    <a target="_blank"
+                        href="https://www.google.com/maps/place/R%E1%BB%85+restaurant+Brno/@49.1971274,16.6036352,16z/data=!4m15!1m8!3m7!1s0x4712945a07bbb3b5:0x86b8336290dc62af!2zQsSbaG91bnNrw6EgMTEzLzgsIDYwMiAwMCBCcm5vLXN0xZllZCwgU8OpYw!3b1!8m2!3d49.1961164!4d16.6090723!16s%2Fg%2F11j0r93rys!3m5!1s0x4712959271a7d9b3:0xa59d76625fbc0cd7!8m2!3d49.1960835!4d16.6091434!16s%2Fg%2F11vjrbxp5b?entry=ttu">
+                        <h5>Find us on Google Maps</h5>
+                    </a>
+                    <h5 class="pt-3">Gift Voucher<br>
+                    Get in touch with us, and we will discuss how the voucher will reach you.
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="list-contact offset-md-6 d-flex col-12 col-md-6 px-md-2">
+                <a class="nav-link icon me-3 p-0" href="https://www.facebook.com/rerestaurantbrno" target="_black">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a class="nav-link icon p-0" href="https://www.instagram.com/re.brno/" target="_black">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+  <div class="box-noti d-none">
+    <div class="col-9 col-md-4 box py-3">
+      <h2 class="title text-center">
+        Notification
+      </h2>
+      <div class="booking-success px-3 d-none">
+          <h5>
+            Thank you for successfully booking a table at our restaurant. We look forward to serving you!
+          </h5>
+      </div>
+      <div class="booking-error px-3 d-none">
+          <h5>
+            Sorry, the reservation could not be completed. Please try again or contact us for assistance.<br>+420 724 332 258
+          </h5>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

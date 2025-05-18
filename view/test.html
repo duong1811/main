@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RỄSTAURACE</title>
+    <link rel="icon" type="image/x-icon" href="../image/01_Homepage/homepage_large.png">
+    <meta name="google-site-verification" content="pxj1LVGiDM3RzcSt4ghhEcF2sz1eMQen7cblRQ_biWQ" />
+    <meta name="robots" content="index, follow">
+    <meta property="og:image" content="../image/01_Homepage/homepage_large.png">
+    <meta name="keywords" content="Rễ restaurant, rebrno, re brno, rebrno.cz, re restaurant brno, re restaurance brno, restaurant, re brno menu"> 
+    <link href="../vendor/bootstrap.min.css" rel="stylesheet">
+    <script src="../vendor/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../vendor/font-awesome.css">
+    <link rel="stylesheet" href="../css/style1.css?v=3.7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="../js/test.js?v=1.6"></script>
+</head>
+
+<body>
+    <section class="content">
+        <div class="booking section" id="booking" name="menu-booking">
+            <div class="container">
+                <div class="title pb-4">
+                    <h1 class="fw-bolder">Booking</h1>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6">
+                        <h5 class="fst-italic">* Online reservations should be made at least 24 hours in advance.</h5>
+                        <form enctype="multipart/form-data">
+                            <div class="input">
+                                <label for="name">Name Surname</label>
+                                <div class="div-input input-name d-flex flex-column">
+                                  <input type="text" name="name" id="name" placeholder="Fill in your name">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="telephone">Phone Number</label>
+                                <div class="div-input input-phone d-flex flex-column">
+                                     <input type="tel" name="telephone" id="phone" placeholder="Phone number">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="email">Email</label>
+                                <div class="div-input input-email d-flex flex-column">
+                                  <input type="email" name="email" id="email" placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="persons">Number of persons</label>
+                                <div class="div-input input-persons d-flex flex-column">
+                                  <input type="number" id="persons" name="persons" min="1" max="10"
+                                         
+                                       placeholder="Number of persons" value="2">
+                                </div>
+                            </div>
+                            <div class="input">
+                                <label for="date">Date and time</label>
+                                <div class="div-input input-date d-flex flex-column">
+                                  <input type="datetime-local" name="date" id="date" style="background: transparent;" placeholder="YYYY-MM-DD">
+                              </div>
+                            </div>
+                            <div class="input">
+                                <label for="estimatedTime">Estimated time of visit</label>
+                                <div class="div-input input-estimatedTime d-flex flex-column">
+                                  <input type="text" name="estimatedTime" id="estimatedTime" placeholder="(1h, 2h)">
+                              </div>
+                            </div>
+                            <div class="input">
+                                <label for="note">Note (special requests, ...)</label>
+                                <div class="div-input input-note d-flex flex-column">
+                                  <input type="text" name="note" id="note" placeholder="Note">
+                              </div>
+                            </div>
+                            <div class="send text-end" id="box-sendBooking">
+                              <button type="submit" id="send-booking">Send</button>
+                                <span class="loading offset-9 col-3 text-end d-none">
+                                    <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 30" enable-background="new 0 0 0 0" xml:space="preserve">
+                                        <circle fill="#BE4B1D" stroke="none" cx="6" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.1"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="30" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.2"></animateTransform>
+                                        </circle>
+                                        <circle fill="#BE4B1D" stroke="none" cx="54" cy="15" r="6">
+                                          <animateTransform attributeName="transform" dur="0.7s" type="translate" values="0 7.5 ; 0 -7.5; 0 7.5" repeatCount="indefinite" begin="0.3"></animateTransform>
+                                        </circle>
+                                      </svg>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-6 justify-content-center d-flex">
+                        <div class="thumnail col-9">
+                            <img src="../image/04_Booking/Circle_Booking.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="mt-5 col-12">
+                        <h6>Reserve by phone:</h6>
+                        <a class="fw-bolder phone" href="tel:+420724332258" style="font-size: calc(1.375rem + 1.5vw); color: #BE4B1D">+420 724 332 258</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>

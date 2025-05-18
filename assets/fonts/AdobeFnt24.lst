@@ -1,0 +1,35 @@
+%!Adobe-FontList 1.24
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/martin/Documents/WORK/Go/_Rễ/Design/Web/Rễ_Website/Document fonts/AdobeFnt24.lst
+FileLength:541
+FileModTime:727285892
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:NotoSans
+FamilyName:Noto Sans
+StyleName:Regular
+MenuName:Noto Sans
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Noto Sans
+WritingScript:Roman
+OutlineFileName:/Users/martin/Documents/WORK/Go/_Rễ/Design/Web/Rễ_Website/Document fonts/NotoSans-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+hasSBIX:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:306788
+FileModTime:395676530
+NameArray:0,Win,1,Noto Sans
+%EndFont
+

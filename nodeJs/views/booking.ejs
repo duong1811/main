@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> RỄSTAURACE</title>
+    <link rel="icon" type="image/x-icon" href="../image/01_Homepage/homepage_large.png">
+    <link href="../vendor/bootstrap.min.css" rel="stylesheet">
+    <script src="../vendor/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../vendor/font-awesome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+       <style>
+      section{
+        padding: 0 20px;
+      }
+    </style>
+</head>
+
+<body>
+    <section class="content px-10 pt-3">
+      <div id="box-home">
+        <div class="text-info">
+          <h3 class="fw-bold">
+            BOOKING RỄSTAURACE
+          </h3>
+        </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Created At</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telephone</th>
+                <th>Status</th>
+                <th scope="col">Persons</th>
+                <th scope="col">Time - Date</th>
+                <th scope="col">Estimated Time</th>
+                <th scope="col">Note</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (bookings && bookings.length > 0) { %>
+                <% bookings.forEach(booking => { %>
+                  <tr>
+                      <td scope="col" class="id d-none"><%= booking.id %></td>
+                      <td scope="col"><%= new Date(booking.createdAt.toDate()).toLocaleString() %></td>
+                      <td scope="col"><%= booking.name %></td>
+                      <td scope="col" class="email"><%= booking.email %></td>
+                      <td scope="col"><%= booking.telephone %></td>
+                      <td class="<%= booking.status === '0' ? 'text-warning' : booking.status === '1' ? 'text-success' : 'text-danger' %>">
+                          <%= booking.status === '0' ? 'Pending' : booking.status === '1' ? 'Accept' : 'Decline' %>
+                      </td>
+                      <td scope="col"><%= booking.persons %></td>
+                      <td scope="col"><%= booking.date %></td>
+                      <td scope="col"><%= booking.estimatedTime %></td>
+                      <td scope="col"><%= booking.note %></td>
+                      <td scope="col">
+                        <div class="button d-flex justify-content-center">
+                          <button type="button" class="accept btn btn-success btn-sm <%= booking.status !== '0' ? 'd-none' : '' %>">Accept</button>
+                          <button type="button" class="mx-2 decline btn btn-warning btn-sm <%= booking.status !== '0' ? 'd-none' : '' %>">Decline</button>
+                          <button type="button" class="remove btn btn-danger btn-sm">Remove</button>
+                        </div>
+                      </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                  <tr class="text-center">
+                      <td colspan="9">No bookings available</td>
+                  </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <div>
+          <% if (currentPage > 1) { %>
+            <a href="/booking-re?page=<%= currentPage - 1 %>&lastVisible=<%= lastVisible %>">Previous</a>
+          <% } %>
+          <% if (hasMore) { %>
+            <a href="/booking-re?page=<%= currentPage + 1 %>&lastVisible=<%= lastVisible %>">Next</a>
+          <% } %>
+        </div>
+      </div>
+    </section>
+ <script>
+$(function(){
+  $(".accept").one("click", function (e) {
+      e.preventDefault();
+      const tr = $(this).closest('tr');
+      const email = tr.find('.email').text().trim();
+const content = `
+Dobrý den,<br>
+<br>
+děkujeme Vám za Vaši rezervaci. Těšíme se na Vaši návštěvu.<br>
+<br>
+S pozdravem,<br>
+Tým Re🌿<br>
+---<br>
+<br>
+Hello,<br>
+<br>
+Thank you for your reservation. We look forward to your visit.<br>
+<br>
+Best regards,<br>
+Team Re🌿`;
+      const id = tr.find('.id').text().trim();
+      var formData = new FormData();
+      formData.append("email", email);
+      formData.append("status", 1);
+      formData.append('content', content);
+      formData.append('id', id);
+      $.ajax({
+          type: 'POST',
+          url: '/booking-re/update-booking',
+          data: formData,
+          contentType: false,
+          processData: false,
+          beforeSend: function () {
+                tr.find('.button').html(`
+                                        <div class="d-flex items-center">
+                                          <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                          <h5 class="mx-2">processing</h5>
+                                        </div>`)
+            },
+          success: function (data) {
+              $('.box-noti, .booking-success').removeClass("d-none");
+          },
+          error: function (error) {
+              console.log('Error sending email: ' + error.responseText);
+              $('.box-noti, .booking-error').removeClass("d-none");
+          },
+          complete: function () {
+              location.reload()
+         }
+      });
+  });
+  
+    $(".decline").one("click", function (e) {
+      e.preventDefault();
+      const tr = $(this).closest('tr');
+      const email = tr.find('.email').text().trim();
+const content = `
+Dobrý den,<br>
+<br>
+omlouváme se, ale Vaši rezervaci nemůžeme z kapacitních důvodů přijmout. Děkujeme za pochopení.<br>
+<br>
+S pozdravem,<br>
+Tým Re🌿<br>
+---<br>
+<br>
+Hello,<br>
+<br>
+We apologize, but we are unable to accommodate your reservation due to capacity reasons. Thank you for your understanding.<br>
+<br>
+Best regards,<br>
+Team Re🌿`;
+      const id = tr.find('.id').text().trim();
+      var formData = new FormData();
+      formData.append("email", email);
+      formData.append("status", 2);
+      formData.append('content', content);
+      formData.append('id', id);
+      $.ajax({
+          type: 'POST',
+          url: '/booking-re/update-booking',
+          data: formData,
+          contentType: false,
+          processData: false,
+          beforeSend: function () {
+                tr.find('.button').html(`
+                                        <div class="d-flex items-center">
+                                          <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                          <h5 class="mx-2">processing</h5>
+                                        </div>`)
+            },
+          success: function (data) {
+              $('.box-noti, .booking-success').removeClass("d-none");
+          },
+          error: function (error) {
+              console.log('Error sending email: ' + error.responseText);
+              $('.box-noti, .booking-error').removeClass("d-none");
+          },
+         complete: function () {
+              location.reload()
+         }
+      });
+  });
+  $(".remove").one("click", function (e) {
+      e.preventDefault();
+      const tr = $(this).closest('tr');
+      const bookingId = tr.find('.id').text().trim();
+      if (confirm('Are you sure you want to delete this booking?')) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/booking-re/delete/' + bookingId,
+            beforeSend: function () {
+                  tr.find('.button').html(`
+                                          <div class="d-flex items-center">
+                                            <div class="spinner-border" role="status">
+                                              <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <h5 class="mx-2">processing</h5>
+                                          </div>`)
+              },
+            success: function (data) {
+                $('.box-noti, .booking-success').removeClass("d-none");
+            },
+            error: function (error) {
+                console.log('Error delete: ' + error.responseText);
+                $('.box-noti, .booking-error').removeClass("d-none");
+            },
+           complete: function () {
+                location.reload()
+           }
+        });
+      }
+  });
+})
+
+  </script>
+
+</html>

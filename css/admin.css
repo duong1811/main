@@ -1,0 +1,581 @@
+body {}
+
+.background {
+    background-color: rgba(0, 0, 0, 0.925);
+    opacity: 0.3;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 20;
+}
+
+.header .menu,
+.header .logo {
+    z-index: 50;
+    color: rgb(255, 255, 255);
+    font-size: 55px;
+}
+.header .logo h3{
+    font-family: Lalezar;
+    font-weight: bolder;
+}
+.header .menu {
+    font-family: Kadwa;
+}
+
+.header-top {
+    background: rgb(72 72 72 / 50%);
+}
+
+.navbar-dark .menu .navbar-nav .nav-link {
+    color: rgb(252, 252, 252);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu .nav-link:hover,
+.menu .nav-link:focus,
+.menu .nav-link:active,
+.menu .nav-link.active {
+    color: rgb(0 130 141) !important;
+}
+
+.content .banner {
+    height: 100vh;
+    width: 100%;
+    color: white;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    padding: 0px 40px;
+    max-height: 680px;
+    background-image: url("../assets/images/bg-1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: unset;
+    position: relative;
+}
+
+.content .banner h1 {
+    font-size: 60px;
+    font-family: 'Kavoon', cursive;
+    z-index: 300;
+    position: relative;
+}
+
+.button a.btn,
+.button .btn {
+    padding: 8px 40px;
+    margin-top: 40px;
+    background-color: rgb(2, 96, 104);
+    border-radius: 20px;
+    position: relative;
+    z-index: 200;
+    color: #120F38;;
+    font-family: 'Kavoon', cursive;
+}
+
+.button h1 {
+    font-family: "Abril Fatface";
+    font-style: normal;
+    font-weight: 900;
+}
+
+#our-story {
+    background-image: url("../assets/images/bg-3.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: unset;
+    background-color: rgb(53, 128, 134);
+    height: 880px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#our-story .container {
+    position: relative;
+    z-index: 40;
+}
+
+#our-story .col-12.col-md-5 {
+    position: relative;
+    z-index: 20;
+    padding: 0px 40px;
+    font-family: Amaranth;
+}
+
+#our-story .title {
+    color: rgb(220, 208, 190);
+    font-family: "Abhaya Libre ExtraBold";
+    font-size: 40px;
+    margin-bottom: 30px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+#our-story .content {
+    color: rgb(220, 208, 190);
+    font-size: 24px;
+    line-height: 1.5;
+    text-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.5);
+}
+
+.circle-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.circle-container .list-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-container img {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 1px 5px 10px 1px #000000a8;
+}
+
+.circle-container img:nth-child(2) {
+    transform: rotate(-18deg) translate(160px) rotate(18deg);
+}
+
+.circle-container img:nth-child(3) {
+    transform: rotate(54deg) translate(160px) rotate(-54deg);
+}
+
+.circle-container img:nth-child(4) {
+    transform: rotate(126deg) translate(160px) rotate(-126deg);
+}
+
+.circle-container img:nth-child(5) {
+    transform: rotate(198deg) translate(160px) rotate(-198deg);
+}
+
+.circle-container img:nth-child(1) {
+    transform: rotate(270deg) translate(160px) rotate(-270deg);
+}
+
+#our-specialties {
+    padding-top: 70px;
+    margin-bottom: 100px;
+}
+
+#our-specialties>.row {
+    width: 80%;
+}
+
+#our-specialties .title h1 {
+    color: rgb(2, 96, 104);
+    margin-bottom: 40px;
+    font-family: 'Kavoon', cursive;
+    font-weight: 400;
+    font-size: 45px;
+}
+
+#our-specialties .col-6 {
+    display: flex;
+    justify-content: center;
+}
+
+#our-specialties .item {
+    background-image: url("../assets/images/bg-disk.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 20px;
+}
+
+#our-specialties .info {
+    color: white;
+    font-family: "Inknut Antiqua";
+    font-size: 20px;
+    padding: 10px 15px 20px 20px;
+}
+
+#our-specialties .bg-disk-1 {
+    background-image: url("../assets/images/disk/bg-disk-1.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    margin-left: 50px;
+}
+
+#our-specialties .bg-disk-1 img {
+    position: relative;
+    top: 50px;
+    left: -50px;
+}
+
+#booking {
+    background-image: url("../assets/images/bg-2.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-bottom: 50px;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+#booking .title h1,
+#galley-title h1 {
+    font-family: Kavoon;
+    font-size: 50px;
+    font-weight: bolder;
+    padding-top: 50px;
+    z-index: 100;
+    position: relative;
+    color: #046068;
+}
+
+#booking .input,
+#feedback .input {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    z-index: 100;
+    position: relative;
+}
+
+#booking .input label {
+    padding-bottom: 10px;
+    padding-top: 8px;
+    font-family: Amaranth;
+}
+
+#booking input {
+    border-radius: 15px;
+    background: rgba(217, 217, 217, 0.427);
+    font-size: 20px;
+    padding-left: 10px;
+    color: white;
+    border: none;
+}
+input::placeholder {
+    color: #ffffffcc;
+  }
+input[type="date"]::before {
+    /* color: #f0f0f0; */
+    opacity: 0.5;
+  }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#gallery {
+    margin: 20px;
+}
+
+#gallery>.row {
+    background: rgb(3 96 104);
+    width: 95%;
+}
+
+#gallery>.row {
+    padding: 30px;
+}
+
+#gallery img {
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 4px;
+}
+
+#gallery .col-12.col-md-5 .col-12 img {
+    height: 265px;
+}
+
+#gallery .col-12.col-md-3 img {
+    height: 265px;
+}
+
+#gallery .col-md-4 img {
+    height: 531px;
+}
+
+#gallery .col-6 img {
+    height: 250px;
+    
+}
+
+#feedback {
+    background-color: rgb(217, 217, 217);
+    margin-top: 80px;
+    padding-bottom: 80px;
+}
+
+#feedback h1 {
+    font-family: Kavoon;
+    font-size: 40px;
+    font-weight: bolder;
+    padding-top: 50px;
+    z-index: 100;
+    position: relative;
+    color: #036068;
+}
+
+#feedback form .input {
+    color: black;
+}
+
+#feedback input,
+#feedback textarea {
+    border-radius: 15px;
+    font-size: 20px;
+    padding-left: 5px;
+    border: none;
+}
+
+.feedback-rating {
+    display: inline-block;
+    transform: rotateY(180deg);
+    text-align: end;
+}
+
+.feedback-rating input[type="radio"] {
+    display: none;
+}
+
+.feedback-rating label {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.feedback-rating label::before {
+    content: "\2605";
+}
+
+.feedback-rating input[type="radio"]:checked~label::before {
+    color: gold;
+}
+
+footer {
+    margin-top: 150px;
+    margin-bottom: 100px;
+    background-color: rgb(15 15 15);
+    color: white;
+}
+
+footer .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-family: Amaranth;
+}
+
+.button-top {
+    position: fixed;
+    bottom: 3.5%;
+    right: 3.5%;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgb(220, 208, 190);
+}
+
+.button-top a {
+    color: rgb(25 3 52);
+    font-size: 40px;
+    line-height: 50px;
+}
+
+#close {
+    height: 100vh;
+    width: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.button-contact {
+    position: fixed;
+    bottom: 3.5%;
+    left: 3.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.button-contact i {
+    color: rgb(220 208 190);
+    font-size: 25px;
+}
+
+
+.button-contact img {
+    width: 50px;
+    border-radius: 50%;
+    background: white;
+}
+
+.button-contact .icon-contact {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background: rgb(25 3 52);
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .circle-container {
+        width: 350px;
+        height: 350px;
+    }
+
+    .circle-container img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .circle-container img:nth-child(2) {
+        transform: rotate(-18deg) translate(85px) rotate(18deg);
+    }
+
+    .circle-container img:nth-child(3) {
+        transform: rotate(54deg) translate(85px) rotate(-54deg);
+    }
+
+    .circle-container img:nth-child(4) {
+        transform: rotate(126deg) translate(85px) rotate(-126deg);
+    }
+
+    .circle-container img:nth-child(5) {
+        transform: rotate(198deg) translate(85px) rotate(-198deg);
+    }
+
+    .circle-container img:nth-child(1) {
+        transform: rotate(270deg) translate(85px) rotate(-270deg);
+    }
+
+    #our-specialties>row {
+        width: 100% !important;
+    }
+
+    .item {
+        margin-bottom: 15px;
+    }
+
+    .content .banner h1 {
+        font-size: 40px;
+    }
+  .content .banner, #booking{
+    background-position: right bottom;
+  }
+    .button h4 {
+        font-family: "Abril Fatface";
+        font-size: 20px;
+    }
+
+    #gallery {
+        margin: 0px !important;
+    }
+
+    #gallery .col-6 img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .header-top {
+        padding: 0px !important;
+    }
+
+    .logo {
+        margin-left: 10px !important;
+    }
+
+    .header .menu {
+        top: 56px;
+        position: absolute;
+        background: rgb(74 74 74 / 85%);
+        width: 100%;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        padding: 10px 0px 20px 10px;
+        border-bottom: 1px solid #026068;
+        box-shadow: 0px 4px 6px 0px #026068;
+    }
+    #gallery>.row {
+        padding: 10px;
+    }
+
+    #gallery .col-md-4 {
+        padding: 0px 0.5rem;
+        margin-top: 1rem;
+    }
+
+    #gallery .col-md-3 {
+        padding: 0px 0.5rem;
+        margin: 0.5rem 0px 1rem;
+    }
+
+    #contact .info {
+        padding-left: 15px !important;
+    }
+
+    .header-top {
+        background: rgb(74 74 74 / 85%);
+    }
+
+    #our-specialties>.row {
+        width: 100%;
+    }
+
+    #our-story .content {
+        line-height: 1.5;
+        font-size: 20px;
+    }
+
+    #our-story .col-12.col-md-7 {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+
+    #our-story .col-12.col-md-5 {
+        padding: 0px;
+    }
+
+    #our-specialties {
+        padding-top: 60px;
+    }
+
+    #our-specialties .item {
+        padding: 8px;
+    }
+
+    #our-specialties>.row > .col-12 {
+        padding: 0
+    }
+    #feedback .input{
+        width: 100%;
+        margin: 0;
+    }
+  #feedback .button{
+    margin: 0 !important;
+  }
+}

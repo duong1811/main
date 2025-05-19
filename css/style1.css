@@ -24,7 +24,7 @@ body {
 
 .navbar-dark .menu .navbar-nav .nav-link {
     color: #d6d1bd;
-    font-size: 20pt;
+    font-size: 15pt;
     line-height: 24pt;
     padding: 0 15px;
     font-weight: 400;
@@ -71,12 +71,12 @@ button#button-menu:focus {
     /*     top: -100%; */
     opacity: 0;
 }
-
-#open-menu {
-    /*     top: -25%; */
+.language {
+    cursor: pointer;
+    color: #d6d1bd;
 }
 
-.language {
+.language:hover {
     cursor: pointer;
     color: rgb(190 73 30);
 }
@@ -134,6 +134,14 @@ button#button-menu:focus {
 
 }
 
+#about-us h2{
+    color: #c64d1f;
+    font-size: 30pt;
+    letter-spacing: 3pt;
+    text-transform: uppercase;
+    margin: 0;
+}
+
 #about-us .all-content {
     color: #c64d1f;
     font-size: 12pt;
@@ -176,7 +184,9 @@ button#button-menu:focus {
     color: #d6d1bd;
     padding-bottom: 40px;
 }
-
+#menu .app-food img{
+    height: 45px;
+}
 #booking {
     padding: 40px 0;
     color: #BE4B1D;
@@ -252,7 +262,21 @@ button#button-menu:focus {
     text-transform: uppercase;
     letter-spacing: 2pt;
 }
-
+#feedback .title{
+    color: #C64D1F;
+    font-weight: 900;
+    letter-spacing: 6pt;
+    text-transform: uppercase;
+}
+#feedback #comment i{
+    color: #c64d1f;
+}
+.quote h5{
+    font-size: 30pt;
+    letter-spacing: 10pt;
+    color: #d6d1bd;
+    text-transform: uppercase;
+}
 input[type="date"] {
     background-color: transparent;
     border: none;
@@ -279,9 +303,8 @@ input[type="date"] {
     height: 100vh;
     background-position: center center;
 }
-
 #feedback .col-12:first-child {
-    background-color: #AC391A;
+    background-color: #182f58;
 }
 
 #feedback .title {
@@ -291,27 +314,29 @@ input[type="date"] {
 #feedback .content,
 #feedback .quote,
 .fa-asterisk {
-    color: #2E0035;
+    color: #d6d1bd;
 }
 
 #feedback .img-review {
     background-repeat: no-repeat;
-
     background-size: cover;
-}
 
+}
 #feedback .img-review:first-child {
-    background-image: url('../image/feedback/Re_Jidlo_02.jpeg');
+    background-image: url('../image/feedback/477012361_17866086390321043_806500686692779637_n.jpg');
     background-position: bottom center;
 }
-
+#feedback .img-review:nth-child(2) img {
+    height: 233px;
+    object-fit: cover;
+}
 #feedback .img-review:nth-child(3) {
-    background-image: url('../image/feedback/Re_Insta_02.jpg');
+    background-image: url('../image/feedback/488039383_17873067858321043_6085146470222043760_n.jpg');
     background-position: center bottom;
 }
 
 #feedback .img-review:nth-child(4) {
-    background-image: url('../image/feedback/Re_Insta_03.jpeg');
+    background-image: url('../image/feedback/485597386_17871411225321043_7761409885295487930_n.jpg');
     background-position: center 30%;
 }
 
@@ -360,21 +385,33 @@ input[type="date"] {
     font-weight: bolder;
 }
 
+
+
 #contact {
-    background-color: #2E0035;
+    background-color: #d6d1bd;
     color: #BE4B1D;
+    
 }
 
 #contact a {
     color: #BE4B1D;
 }
-
 #contact a.nav-link.icon {
     width: 30px;
     height: 30px;
     font-size: 20px;
+    background-color: #182f58;
 }
-
+#contact a.nav-link.icon i{
+    color: #d6d1bd;
+}
+.footer-bottom h3{
+    font-size: 25pt;
+    letter-spacing: 4pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+}
 .box-noti {
     position: fixed;
     top: 0;

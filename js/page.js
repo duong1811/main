@@ -16,7 +16,7 @@ $(function () {
     window.addEventListener('resize', function() {
         getGallery();
     });
-    review()
+    // review()
     $("#button-menu").click(function () {
         $('#close-menu').css({ 'opacity': 1 })
         $('#open-menu').css({ 'opacity': 0 })
@@ -196,7 +196,6 @@ function getMenu(folderMenu, link) {
 }
 function checkVisibleElements() {
     const sections = document.querySelectorAll('.section');
-
     sections.forEach(section => {
         const position = section.getBoundingClientRect();
         const isVisible = (position.top >= 0 && position.y <= window.innerHeight / 2);

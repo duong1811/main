@@ -36,7 +36,6 @@ firebase-debug.log
 # --------------------------
 # Laravel / PHP (if present)
 # --------------------------
-/vendor
 /.phpunit.cache
 /.phpunit.result.cache
 /storage/*.key

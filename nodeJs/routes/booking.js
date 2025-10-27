@@ -67,8 +67,8 @@ router.post('/update-booking', upload_img.single('file'), async (req, res) => {
             port: 465,
             secure: true,
             auth: {
-                user: 're.brno@seznam.cz',
-                pass: 'Rebrno2023'
+                user: '',
+                pass: ''
             }
         });
 

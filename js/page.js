@@ -1,22 +1,11 @@
 $(function () {
-    getHome();
+    // getHome();
     getGallery();
-    var menu = {
-        menuCZ: 'menuCZ',
-        menuEN: 'menuEN'
-    }
-    var link = {
-        menuCZ: 'linkmenuCZ',
-        menuEN: 'linkmenuEN',
-        launchmenuCZ: 'linklaunchMenuCZ',
-        launchmenuEN: 'linklaunchMenuEN'
-    }
-    var folderMenu = Object.keys(link);
-    getMenu(folderMenu, link);
     window.addEventListener('resize', function() {
         getGallery();
     });
-    // review()
+    review()
+    la
     $("#button-menu").click(function () {
         $('#close-menu').css({ 'opacity': 1 })
         $('#open-menu').css({ 'opacity': 0 })
@@ -70,100 +59,87 @@ stars.forEach(star => {
         const rating = star.value;
         console.log('User rated: ' + rating + ' stars');
     });
-});
-function getHome() {
-    var ListImage = document.getElementById('list-home');
+});s
+function getGallery() {
+    var ListImage = document.getElementById('list-gallery');
+
     $.ajax({
-        url: "/nodejs/firebase/img?folder=home",
+        url: "/gallery-re",
         type: "GET",
         dataType: "json",
         success: function (data) {
-             $.each(data, function (index, val) {
-                 const img = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                   <div class="img-gallery" style="background-image: url('${val.url}');"></div>
-                               </div>`;
-                 ListImage.insertAdjacentHTML("beforeend", img);
-             });
+            ListImage.innerHTML = "";
+
+            if (window.innerWidth >= 1280) {
+                $.each(data, function (index, val) {
+                    getDimensionsFromImageUrl(val.url).then(dimensions => {
+                        var cols = document.querySelectorAll(".col");
+                        let added = false;
+
+                        if (index < data.length - 1) {
+                            if (dimensions.width < dimensions.height) {
+                                cols.forEach(col => {
+                                    if (!added && col.querySelectorAll(".img-gallery").length < 2 && col.getAttribute('add') === 'false') {
+                                        const img = `<div class="img-gallery" style="background-image: url('${val.url}'); width: 50vw"></div>`;
+                                        col.insertAdjacentHTML("beforeend", img);
+                                        col.setAttribute('add', 'true');
+                                        added = true;
+                                    }
+                                });
+
+                                if (!added) {
+                                    const div_col = `
+                                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                            <div class="d-flex col" add="false">
+                                                <div class="img-gallery" style="background-image: url('${val.url}'); width: 50vw"></div>
+                                            </div>
+                                        </div>`;
+                                    ListImage.insertAdjacentHTML("beforeend", div_col);
+                                }
+                            } else {
+                                const img = `
+                                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                        <div class="img-gallery" style="background-image: url('${val.url}');"></div>
+                                    </div>`;
+                                ListImage.insertAdjacentHTML("beforeend", img);
+                            }
+                        } else {
+                            if (!added) {
+                                const div_col = `
+                                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                        <div class="d-flex col" add="false">
+                                            <div class="img-gallery" style="background-image: url('${val.url}'); width: 50vw"></div>
+                                        </div>
+                                    </div>`;
+                                ListImage.insertAdjacentHTML("beforeend", div_col);
+                            } else {
+                                const img = `
+                                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                        <div class="img-gallery" style="background-image: url('${val.url}');"></div>
+                                    </div>`;
+                                ListImage.insertAdjacentHTML("beforeend", img);
+                            }
+                        }
+                    }).catch(error => {
+                        console.error('Error loading image:', error);
+                    });
+                });
+            } else {
+                // For mobile view
+                $.each(data, function (index, val) {
+                    const img = `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <div class="img-gallery" style="background-image: url('${val.url}');"></div>
+                        </div>`;
+                    ListImage.insertAdjacentHTML("beforeend", img);
+                });
+            }
         },
         error: function (xhr, status, error) {
-            console.error("Request failed:", error);
+            console.error("Gallery request failed:", error);
         }
     });
 }
-function getGallery() {
-            var ListImage = document.getElementById('list-gallery');
-            $.ajax({
-                url: "/nodejs/firebase/img?folder=gallery",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    ListImage.innerHTML = ''
-                    if (window.innerWidth >= 1280) {
-                        $.each(data, function (index, val) {
-                            getDimensionsFromImageUrl(val.url).then(dimensions => {
-                                var cols = document.querySelectorAll(".col");
-                                let added = false;
-                                if (index < data.length - 1) {
-                                    if (dimensions.width < dimensions.height) {
-                                        cols.forEach(col => {
-                                            if (!added && col.querySelectorAll(".img-gallery").length < 2 && col.getAttribute('add') === 'false') {
-                                                const img = `<div class="img-gallery" style="background-image: url('${val.url}');width: 50vw"></div>`;
-                                                col.insertAdjacentHTML("beforeend", img);
-                                                col.setAttribute('add', 'true');
-                                                added = true;
-                                            }
-                                        });
-                                        if (!added) {
-                                            const div_col = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                                    <div class="d-flex col" add="false">
-                                                        <div class="img-gallery" style="background-image: url('${val.url}');width: 50vw">
-                                                    </div>
-                                                </div>`;
-                                            ListImage.insertAdjacentHTML("beforeend", div_col);
-                                        }
-                                    } else {
-                                        const img = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                               <div class="img-gallery" style="background-image: url('${val.url}');"></div>
-                                           </div>`;
-                                        ListImage.insertAdjacentHTML("beforeend", img);
-                                    }
-                                } else {
-                                    if (index === data.length - 1) {
-                                        if (!added) {
-                                            const div_col = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                                    <div class="d-flex col" add="false">
-                                                        <div class="img-gallery" style="background-image: url('${val.url}');width: 50vw">
-                                                    </div>
-                                                </div>`;
-                                            ListImage.insertAdjacentHTML("beforeend", div_col);
-                                        } else{
-                                          const img = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                                         <div class="img-gallery" style="background-image: url('${val.url}');"></div>
-                                                     </div>`;
-                                           ListImage.insertAdjacentHTML("beforeend", img);
-                                        }
-                                        
-                                    }
-                                }
-                            }).catch(error => {
-                                console.error('Error:', error);
-                            });
-                        });
-                    } else {
-                        $.each(data, function (index, val) {
-                            const img = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                     <div class="img-gallery" style="background-image: url('${val.url}');"></div>
-                                 </div>`;
-                            ListImage.insertAdjacentHTML("beforeend", img);
-                        });
-                    }
-
-                },
-                error: function (xhr, status, error) {
-                    console.error("Request failed:", error);
-                }
-            });
-        }
 function getDimensionsFromImageUrl(imageUrl) {
     return new Promise((resolve, reject) => {
         const image = new Image();
@@ -176,26 +152,25 @@ function getDimensionsFromImageUrl(imageUrl) {
         image.src = imageUrl;
     });
 }
+document.addEventListener('DOMContentLoaded', async () => {
+  const folders = ['menuEN', 'menuCZ', 'launchmenuEN', 'launchmenuCZ'];
 
-function getMenu(folderMenu, link) {
-    if (folderMenu.length === 0) {
-        return;
+  for (const folder of folders) {
+    try {
+      const res = await fetch(`/menu-re?folder=${folder}`);
+      const files = await res.json();
+      if (files.length > 0) {
+        const link = document.getElementById(folder);
+        link.href = files[0].url;
+      }
+    } catch (err) {
+      console.error(`Error loading menu for ${folder}:`, err);
     }
-    $.each(link, function (index, val) {
-        $.ajax({
-          url: 'nodejs/'+val,
-          type: 'GET',
-          success: function(data) {
-            $("#"+index).attr('href',data.newestFilePath.replace('/home/restaurance/','../'))
-          },
-          error: function(xhr, status, error) {
-            console.error('Lỗi khi gọi AJAX:', error);
-          }
-        });
-    });
-}
+  }
+});
 function checkVisibleElements() {
     const sections = document.querySelectorAll('.section');
+
     sections.forEach(section => {
         const position = section.getBoundingClientRect();
         const isVisible = (position.top >= 0 && position.y <= window.innerHeight / 2);

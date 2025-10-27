@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>RỄSTAURACE</title>
+   <link rel="icon" type="image/x-icon" href="../image/01_Homepage/homepage_large.png">
+   <link href="../vendor/bootstrap.min.css" rel="stylesheet">
+   <script src="../vendor/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="../vendor/font-awesome.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+   <script src="../js/mail.js?v=1.3.2"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+   <script src="../js/admin.js?v=3.9"></script>
+   <style>
+      .img-gallery {
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center center;
+         background-color: #f0f0f0;
+         height: 20vh;
+      }
+
+      #list-gallery .img-gallery {
+         background-position: center 63%;
+      }
+
+      input[type="file"] {
+         position: absolute;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         opacity: 0;
+         display: inline;
+      }
+
+      #box-delete {
+         background: rgba(10, 10, 10, .86);
+         position: fixed;
+         width: 100vw;
+         height: 100vh;
+         z-index: 10;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      #box-delete .box-content {
+         background: white;
+         width: max-content;
+         height: max-content;
+         margin: 0 20px;
+         padding: 10px;
+         border-radius: 10px;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="box-delete" class="d-none">
+      <div class="box-content text-center">
+         <h5>
+            Are you sure you want to remove the image?
+         </h5>
+         <div>
+            <button class="btn btn-danger mb-3 px-5 delete">
+               <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+            </button>
+            <button class="btn btn-secondary mb-3 px-5 cancel">
+               <i class="fa fa-exit" aria-hidden="true"></i> Cancel
+            </button>
+         </div>
+      </div>
+   </div>
+   <section class="content container">
+      <div id="box-menu">
+         <div class="text-info">
+            <h3 class="fw-bold">
+               Menu
+            </h3>
+         </div>
+         <div class="menu-EN mb-2">
+            <h4>Main Menu</h4>
+            <div>
+               <a href="" id="menuEN" target="_black">menuEN</a>
+            </div>
+            <form onsubmit="updateMenu(event)" folder="menuEN" class="" id="up-home" enctype="multipart/form-data">
+               <label htmlfor="fileMenuEN"
+                  class="carousel mt-2 col-12 col-sm-6 col-md-4 rounded-3 border text-center border-secondary py-2"
+                  style="cursor: pointer">
+                  <span>Select Video files to upload</span>
+                  <input type="file" id="fileMenuEN" accept="application/pdf" class="file" name="file"
+                     onchange="File_image(this)">
+               </label>
+               <input type="text" name="folder" class="d-none" value="menuEN">
+               <button type="submit" class="btn btn-success my-2 upload" disabled>Update</button>
+               <div class="btn btn-secondary my-2 cancel">Cancel</div>
+            </form>
+         </div>
+         <div class="menu-CZ">
+            <div>
+               <a href="" id="menuCZ" target="_black">menuCZ</a>
+            </div>
+            <form onsubmit="updateMenu(event)" folder="menuCZ" class="" id="up-home" enctype="multipart/form-data">
+               <label htmlfor="fileMenuCZ"
+                  class="carousel mt-2 col-12 col-sm-6 col-md-4 rounded-3 border text-center border-secondary py-2"
+                  style="cursor: pointer">
+                  <span>Select Video files to upload</span>
+                  <input type="file" id="fileMenuCZ" accept="application/pdf" class="file" name="file"
+                     onchange="File_image(this)">
+               </label>
+               <input type="text" name="folder" class="d-none" value="menuCZ">
+               <button type="submit" class="btn btn-success my-2 upload" disabled>Update</button>
+               <div class="btn btn-secondary my-2 cancel">Cancel</div>
+            </form>
+         </div>
+      </div>
+      <div class="menu-EN mb-2">
+         <h4>Lunch Menu</h4>
+         <div>
+            <a href="" id="launchmenuEN" target="_black">menuEN</a>
+         </div>
+         <form onsubmit="updateMenu(event)" folder="launchmenuEN" class="" id="up-home" enctype="multipart/form-data">
+            <label htmlfor="fileMenuEN"
+               class="carousel mt-2 col-12 col-sm-6 col-md-4 rounded-3 border text-center border-secondary py-2"
+               style="cursor: pointer">
+               <span>Select Video files to upload</span>
+               <input type="file" id="fileMenuEN" accept="application/pdf" class="file" name="file"
+                  onchange="File_image(this)">
+            </label>
+            <input type="text" name="folder" class="d-none" value="menuEN">
+            <button type="submit" class="btn btn-success my-2 upload" disabled>Update</button>
+            <div class="btn btn-secondary my-2 cancel">Cancel</div>
+         </form>
+      </div>
+      <div class="menu-CZ">
+         <div>
+            <a href="" id="launchmenuCZ" target="_black">menuCZ</a>
+         </div>
+         <form onsubmit="updateMenu(event)" folder="launchmenuCZ" class="" id="up-home" enctype="multipart/form-data">
+            <label htmlfor="fileMenuCZ"
+               class="carousel mt-2 col-12 col-sm-6 col-md-4 rounded-3 border text-center border-secondary py-2"
+               style="cursor: pointer">
+               <span>Select Video files to upload</span>
+               <input type="file" id="fileMenuCZ" accept="application/pdf" class="file" name="file"
+                  onchange="File_image(this)">
+            </label>
+            <input type="text" name="folder" class="d-none" value="menuCZ">
+            <button type="submit" class="btn btn-success my-2 upload" disabled>Update</button>
+            <div class="btn btn-secondary my-2 cancel">Cancel</div>
+         </form>
+      </div>
+      </div>
+      <div class="text-info mt-4">
+         <h3 class="fw-bold">
+            Gallery
+         </h3>
+      </div>
+      <div id="list-gallery" class="row"></div>
+      <form onsubmit="upload(event)" class="" id="up-home" enctype="multipart/form-data">
+         <label htmlfor="fileGallery"
+            class="carousel mt-2 col-12 col-lg-4 rounded-3 border text-center border-secondary py-2"
+            style="cursor: pointer">
+            <span>Select Video files to upload</span>
+            <input type="file" id="fileGallery" multiple="multiple" accept="image/*" name="files"
+               onchange="File_image(this)">
+         </label>
+         <input type="text" id="folderInput" name="folder" class="d-none" value="gallery">
+         <button type="submit" class="btn btn-success my-2 upload" disabled>Upload File</button>
+         <div class="btn btn-secondary my-2 cancel">Cancel</div>
+      </form>
+      <div class="text-info">
+         <h3>Review</h3>
+      </div>
+      <div id="review" class="row">
+         <% if (reviews && reviews.length> 0) { %>
+            <% reviews.forEach(review=> { %>
+               <div class="col-md-6 mb-3">
+                  <form class="card p-3 shadow-sm h-100 review-form" data-id="<%= review.id %>">
+                     <div class="mb-2">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" value="<%= review.name %>" required>
+                     </div>
+                     <div class="mb-2">
+                        <label class="form-label">Rating</label>
+                        <select name="rating" class="form-select" required>
+                           <% for(let i=5; i>=1; i--) { %>
+                              <option value="<%= i %>" <%=review.rating==i ? 'selected' : '' %>><%= '★' .repeat(i) %>
+                              </option>
+                              <% } %>
+                        </select>
+                     </div>
+                     <div class="mb-2">
+                        <label class="form-label">Review (CZ)</label>
+                        <textarea name="reviewCZ" class="form-control" rows="2"><%= review.reviewCZ || '' %></textarea>
+                     </div>
+                     <div class="mb-2">
+                        <label class="form-label">Review (EN)</label>
+                        <textarea name="reviewEN" class="form-control" rows="2"><%= review.reviewEN || '' %></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                     <div class="form-msg mt-2"></div>
+                  </form>
+               </div>
+               <% }) %>
+                  <% } else { %>
+                     <p class="text-muted">No reviews yet.</p>
+                     <% } %>
+      </div>
+   </section>
+   {/* <!-- FORM THÊM REVIEW
+   <div class="row mt-4">
+      <div class="col-md-8 offset-md-2">
+         <div class="card p-4 shadow-sm">
+            <h5 class="mb-3">Add a Review</h5>
+      <form id="reviewForm">
+               <div class="mb-3">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+               </div>
+
+               <div class="mb-3">
+                  <label for="rating" class="form-label">Rating</label>
+                  <select class="form-select" id="rating" name="rating" required>
+                     <option value="">Select rating</option>
+                     <option value="5">★★★★★</option>
+                     <option value="4">★★★★</option>
+                     <option value="3">★★★</option>
+                     <option value="2">★★</option>
+                     <option value="1">★</option>
+                  </select>
+               </div>
+
+               <div class="mb-3">
+                  <label for="reviewCZ" class="form-label">Review (Czech)</label>
+                  <textarea class="form-control" id="reviewCZ" name="reviewCZ" rows="3"></textarea>
+               </div>
+
+               <div class="mb-3">
+                  <label for="reviewEN" class="form-label">Review (English)</label>
+                  <textarea class="form-control" id="reviewEN" name="reviewEN" rows="3"></textarea>
+               </div>
+
+               <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+         </div>
+      </div>
+   </div> --> */}
+
+</html>
+
+<script>
+   // document.getElementById('reviewForm').addEventListener('submit', async function (e) {
+   //    e.preventDefault(); // Ngăn submit form theo cách truyền thống
+
+   //    const form = e.target;
+   //    const data = {
+   //       name: form.name.value,
+   //       rating: form.rating.value,
+   //       reviewCZ: form.reviewCZ.value,
+   //       reviewEN: form.reviewEN.value
+   //    };
+
+   //    try {
+   //       const response = await fetch('/admin-restaurace-re', {
+   //          method: 'POST',
+   //          headers: {
+   //             'Content-Type': 'application/json'
+   //          },
+   //          body: JSON.stringify(data)
+   //       });
+
+   //       const result = await response.json();
+
+   //       const msgDiv = document.getElementById('msg');
+   //       if (response.ok) {
+   //          msgDiv.innerHTML = '<div class="alert alert-success">Review submitted successfully!</div>';
+   //          form.reset();
+   //       } else {
+   //          msgDiv.innerHTML = `<div class="alert alert-danger">Error: ${result.error || 'Something went wrong'}</div>`;
+   //       }
+   //    } catch (error) {
+   //       document.getElementById('msg').innerHTML = `<div class="alert alert-danger">Network error</div>`;
+   //    }
+   // });
+   document.querySelectorAll('.review-form').forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const reviewId = form.dataset.id;
+      const formData = new FormData(form);
+
+      // Chuẩn bị data json
+      const data = {
+        name: formData.get('name'),
+        rating: formData.get('rating'),
+        reviewCZ: formData.get('reviewCZ'),
+        reviewEN: formData.get('reviewEN')
+      };
+
+      const msgDiv = form.querySelector('.form-msg');
+
+      try {
+        const res = await fetch(`/admin-restaurace-re/${reviewId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+
+        if(res.ok) {
+          msgDiv.innerHTML = '<div class="alert alert-success p-1">Saved!</div>';
+        } else {
+          msgDiv.innerHTML = `<div class="alert alert-danger p-1">${result.error || 'Error occurred'}</div>`;
+        }
+      } catch(err) {
+        msgDiv.innerHTML = '<div class="alert alert-danger p-1">Network error</div>';
+      }
+    });
+  });
+  document.addEventListener('DOMContentLoaded', async () => {
+  const folders = ['menuEN', 'menuCZ', 'launchmenuEN', 'launchmenuCZ'];
+
+  for (const folder of folders) {
+    try {
+      const res = await fetch(`/menu-re?folder=${folder}`);
+      const files = await res.json();
+      if (files.length > 0) {
+        const link = document.getElementById(folder);
+        link.href = files[0].url;
+      }
+    } catch (err) {
+      console.error(`Error loading menu for ${folder}:`, err);
+    }
+  }
+});
+</script>

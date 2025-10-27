@@ -5,12 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var bookingRouter = require('./routes/booking');
+var bookingRouter = require('./routes/re/booking')
 var usersRouter = require('./routes/users');
 var firebase = require('./routes/firebase');
+var adminRouter = require('./routes/re/admin');
+var menuRouter = require('./routes/re/menu');
+var galleryRouter = require('./routes/re/gallery');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -22,7 +24,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
-app.use('/booking', bookingRouter);
+app.use('/admin-re', adminRouter);
+app.use('/booking-re', bookingRouter);
+app.use('/menu-re', menuRouter);
+app.use('/gallery-re', galleryRouter);
 app.use('/users', usersRouter);
 app.use('/firebase', firebase);
 

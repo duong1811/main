@@ -5,7 +5,7 @@ const { open } = require('sqlite');
 
 // Mở kết nối SQLite
 const dbPromise = open({
-  filename: './restaurant.db', // bạn dùng file DB giống booking
+  filename: './bep.db', // bạn dùng file DB giống booking
   driver: sqlite3.Database
 });
 
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     const totalRecords = result.total;
     const totalPages = Math.ceil(totalRecords / pageSize);
 
-    res.render('re/admin', {
+    res.render('admin', {
       title: 'Reviews',
       reviews,
       currentPage: page,

@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 // Mở kết nối SQLite
 const dbPromise = open({
-  filename: './restaurant.db',
+  filename: './bep.db',
   driver: sqlite3.Database
 });
 
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     const totalRecords = result.total;
     const totalPages = Math.ceil(totalRecords / pageSize);
 
-    res.render('re/booking', {
+    res.render('booking', {
       title: 'Booking',
       bookings,
       currentPage: page,
